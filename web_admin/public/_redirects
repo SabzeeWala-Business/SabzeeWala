@@ -1,0 +1,3 @@
+/api/otp  /.netlify/functions/otp           200
+/msg91/*  https://control.msg91.com/:splat  200!
+/*        /index.html                       200
