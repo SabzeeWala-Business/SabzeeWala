@@ -69,7 +69,7 @@ export default function NotificationsPage() {
     return (
       (typeof window !== 'undefined' && localStorage.getItem('sabzee_backend_url')) ||
       NOTIFICATION_API_URL ||
-      'http://localhost:5000'
+      'https://sabzeewala.onrender.com'
     );
   });
   const [showUrlConfig, setShowUrlConfig] = useState(false);
@@ -77,7 +77,7 @@ export default function NotificationsPage() {
 
   // Fetch Server status and customer tokens
   const checkStatus = async (targetUrl = backendUrl) => {
-    const url = (targetUrl || 'http://localhost:5000').replace(/\/+$/, '');
+    const url = (targetUrl || 'https://sabzeewala.onrender.com').replace(/\/+$/, '');
     try {
       setServerStatus((prev) => ({ ...prev, loading: true }));
       const res = await fetch(`${url}/api/notifications/status`);
@@ -165,7 +165,7 @@ export default function NotificationsPage() {
     setBroadcastSending(true);
     setBroadcastResult(null);
 
-    const base = (backendUrl || NOTIFICATION_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
+    const base = (backendUrl || NOTIFICATION_API_URL || 'https://sabzeewala.onrender.com').replace(/\/+$/, '');
     try {
       const res = await fetch(`${base}/api/notifications/broadcast`, {
         method: 'POST',
@@ -207,7 +207,7 @@ export default function NotificationsPage() {
     setDirectSending(true);
     setDirectResult(null);
 
-    const base = (backendUrl || NOTIFICATION_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
+    const base = (backendUrl || NOTIFICATION_API_URL || 'https://sabzeewala.onrender.com').replace(/\/+$/, '');
     try {
       const res = await fetch(`${base}/api/notifications/send-to-user`, {
         method: 'POST',
@@ -315,7 +315,7 @@ export default function NotificationsPage() {
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <input
                 type="text"
-                placeholder="http://localhost:5000"
+                placeholder="https://sabzeewala.onrender.com"
                 value={backendUrl}
                 onChange={(e) => setBackendUrl(e.target.value)}
                 style={{ width: 230, padding: '6px 10px', fontSize: 13 }}

@@ -8,17 +8,15 @@ export const STORAGE_BUCKET = 'SabzeeWala';
 /** Express MSG91 OTP API (same backend the mobile app uses) */
 export const AUTH_API_URL =
   import.meta.env.VITE_AUTH_API_URL ||
-  (import.meta.env.DEV ? '' : 'http://localhost:5000');
+  import.meta.env.VITE_API_URL ||
+  'https://sabzeewala.onrender.com';
 
 /** Backend API URL for Push Notifications and Server Endpoints */
 export const NOTIFICATION_API_URL =
   (typeof window !== 'undefined' && localStorage.getItem('sabzee_backend_url')) ||
   import.meta.env.VITE_API_URL ||
   import.meta.env.VITE_AUTH_API_URL ||
-  (typeof window !== 'undefined' &&
-  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-    ? 'http://localhost:5000'
-    : '');
+  'https://sabzeewala.onrender.com';
 
 export function formatPhoneE164(phone) {
   const digits = String(phone || '').replace(/\D/g, '');
