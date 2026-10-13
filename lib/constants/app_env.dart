@@ -50,6 +50,6 @@ class AppEnv {
   // Backend API URL
   static const String backendApiUrl = String.fromEnvironment(
     'BACKEND_API_URL',
-    defaultValue: 'http://10.0.2.2:5000',
+    defaultValue: 'https://sabzeewala.onrender.com',
   );
 }
