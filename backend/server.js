@@ -46,8 +46,13 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT) {
 
 if (serviceAccount) {
   try {
+    const certCredential =
+      admin.credential && typeof admin.credential.cert === 'function'
+        ? admin.credential.cert(serviceAccount)
+        : require('firebase-admin/app').cert(serviceAccount);
+
     firebaseAdmin = admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
+      credential: certCredential,
     });
     console.log(`[FCM] Firebase Admin initialized for project: ${serviceAccount.project_id}`);
   } catch (err) {
