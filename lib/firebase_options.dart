@@ -64,7 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '635568655327',
     projectId: 'sabzee-wala',
     storageBucket: 'sabzee-wala.firebasestorage.app',
-    iosBundleId: 'com.sabzeewala.app',
+    iosBundleId: 'com.sabzeewala.apps',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -73,7 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '635568655327',
     projectId: 'sabzee-wala',
     storageBucket: 'sabzee-wala.firebasestorage.app',
-    iosBundleId: 'com.sabzeewala.app',
+    iosBundleId: 'com.sabzeewala.apps',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
