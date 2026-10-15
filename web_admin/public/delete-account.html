@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request Account Deletion - SabzeeWala</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1b5e20;
+      --accent: #2e7d32;
+      --danger: #d32f2f;
+      --text-dark: #1f2937;
+      --text-muted: #4b5563;
+      --bg: #f9fbf9;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+    header {
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 26px;
+      font-weight: 800;
+    }
+    main {
+      max-width: 680px;
+      margin: -20px auto 60px;
+      background: var(--card-bg);
+      padding: 36px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+    h1 {
+      font-size: 24px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+    p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+    .warning-card {
+      background: #fef2f2;
+      border-left: 4px solid var(--danger);
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 20px 0 24px;
+      font-size: 14px;
+      color: #991b1b;
+    }
+    .options-grid {
+      display: grid;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .option-card {
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 12px;
+      background: #fafafa;
+    }
+    .option-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-dark);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+      width: 100%;
+    }
+    .btn-danger:hover {
+      background: #b71c1c;
+    }
+    .retention-info {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .success-message {
+      display: none;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span>🥬</span>
+      <span>SabzeeWala</span>
+    </div>
+  </header>
+
+  <main>
+    <h1>Delete Your Account & Data</h1>
+    <p>We respect your privacy and give you full authority to delete your personal account and associated data from our servers at any time.</p>
+
+    <div class="warning-card">
+      <strong>⚠️ What happens when your account is deleted:</strong>
+      <ul style="margin: 8px 0 0 20px;">
+        <li>Your profile details (name, email, mobile number) will be permanently erased.</li>
+        <li>All saved delivery addresses and cart wishlists will be wiped.</li>
+        <li>Unused wallet balances and referral coins will be forfeited.</li>
+        <li>This action is irreversible. You will need to register as a new customer if you return.</li>
+      </ul>
+    </div>
+
+    <div class="options-grid">
+      <div class="option-card">
+        <h3>Method 1: Instant In-App Deletion (Recommended)</h3>
+        <p>If you have the SabzeeWala mobile app installed on your Android device:</p>
+        <ol style="margin: 8px 0 0 20px; color: var(--text-muted); font-size: 14px;">
+          <li>Open the <strong>SabzeeWala</strong> app.</li>
+          <li>Tap on <strong>My Profile</strong> in the bottom navigation.</li>
+          <li>Select <strong>Settings &rarr; Delete Account</strong>.</li>
+          <li>Confirm the prompt. Your data will be wiped immediately.</li>
+        </ol>
+      </div>
+
+      <div class="option-card">
+        <h3>Method 2: Web Deletion Request Form</h3>
+        <p>If you have uninstalled the app or cannot access your phone, submit this form. Our team will verify and delete your account within 48 hours.</p>
+
+        <form id="deleteForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="mobile">Registered 10-Digit Mobile Number *</label>
+            <input type="tel" id="mobile" required placeholder="e.g. 9876543210" pattern="[0-9]{10}" maxlength="10" />
+          </div>
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Name used in profile" />
+          </div>
+          <div class="form-group">
+            <label for="reason">Reason for deletion (Optional)</label>
+            <textarea id="reason" rows="2" placeholder="Help us understand how we can improve"></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger">Submit Deletion Request</button>
+        </form>
+
+        <div id="successMsg" class="success-message">
+          ✅ Thank you. Your deletion request has been registered. You will receive an SMS confirmation once your records are purged.
+        </div>
+      </div>
+    </div>
+
+    <div class="retention-info">
+      <strong>Statutory Data Retention Notice:</strong> While personal contact details, device tokens, and addresses are purged, past financial transaction logs and tax invoices will be archived in accordance with Indian tax regulations (up to 7 years) solely for audit and accounting compliance.
+    </div>
+  </main>
+
+  <footer class="footer">
+    &copy; 2026 SabzeeWala. All rights reserved. | <a href="/privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const mobile = document.getElementById('mobile').value;
+      const name = document.getElementById('name').value;
+      const reason = document.getElementById('reason').value;
+      
+      // Open prefilled email to support as backup
+      const mailtoUrl = `mailto:support@sabzeewala.com?subject=Account%20Deletion%20Request%20-%20${mobile}&body=Please%20delete%20my%20SabzeeWala%20account%20associated%20with%20mobile%20number:%20${mobile}%0AName:%20${encodeURIComponent(name)}%0AReason:%20${encodeURIComponent(reason)}`;
+      
+      document.getElementById('deleteForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

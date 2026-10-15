@@ -1,4 +1,4 @@
-package com.example.subzee
+package com.sabzeewala.app
 
 import io.flutter.embedding.android.FlutterActivity
 

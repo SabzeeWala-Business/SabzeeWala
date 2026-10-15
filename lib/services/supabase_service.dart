@@ -44,6 +44,44 @@ class SupabaseService {
     }
   }
 
+  /// Permanently deletes or anonymizes a user's account and associated data for Play Store compliance
+  Future<bool> deleteUserAccount(String userId) async {
+    if (!isSupabaseAvailable) return false;
+    try {
+      // 1. Delete addresses
+      try {
+        await client!.from('addresses').delete().eq('user_id', userId);
+      } catch (_) {}
+
+      // 2. Delete cart items
+      try {
+        await client!.from('cart').delete().eq('user_id', userId);
+      } catch (_) {}
+
+      // 3. Delete wishlists
+      try {
+        await client!.from('wishlists').delete().eq('user_id', userId);
+      } catch (_) {}
+
+      // 4. Anonymize/delete profile record in users table
+      try {
+        await client!.from('users').delete().eq('id', userId);
+      } catch (err) {
+        // Fallback: update status to deleted and strip personal data
+        await client!.from('users').update({
+          'status': 'deleted',
+          'full_name': 'Deleted User',
+          'email': null,
+          'profile_completion_status': 'deleted',
+        }).eq('id', userId);
+      }
+      return true;
+    } catch (e) {
+      print("Error deleting user account from Supabase: $e");
+      return false;
+    }
+  }
+
   // -------------------------------------------------------------
   // Product Seeding & Fetching Methods
   // -------------------------------------------------------------

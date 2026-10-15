@@ -41,11 +41,8 @@ class CashfreeService {
   static String sandboxAppId = AppEnv.cashfreeSandboxAppId;
   static String sandboxSecretKey = AppEnv.cashfreeSandboxSecretKey;
 
-  /// Default backend base URL:
-  /// - Use http://10.0.2.2:5000 for Android Emulator
-  /// - Use http://192.168.x.x:5000 for physical phone on local Wi-Fi
-  /// - Use your deployed server URL (e.g., https://api.sabzeewala.com) in production
-  String backendBaseUrl = 'http://10.0.2.2:5000';
+  /// Production backend API URL from AppEnv (.env)
+  String backendBaseUrl = AppEnv.backendApiUrl.isNotEmpty ? AppEnv.backendApiUrl : 'https://sabzeewala.onrender.com';
 
   void init() {
     if (_initialized) return;
@@ -104,9 +101,8 @@ class CashfreeService {
     );
   }
 
-  /// Set this to your deployed cloud backend URL (e.g., https://api.sabzeewala.com)
-  /// For local testing / Sandbox, it calls Cashfree HTTPS API directly for instant (<300ms) execution.
-  String? cloudBackendUrl;
+  /// Cloud backend URL loaded securely from AppEnv
+  String? cloudBackendUrl = AppEnv.backendApiUrl;
 
   /// Request payment session from Sabzee backend or direct Cashfree fallback
   Future<Map<String, dynamic>> createOrderSession({

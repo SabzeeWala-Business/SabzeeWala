@@ -597,6 +597,16 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Request permanent deletion of user account and associated personal data
+  Future<bool> deleteAccount() async {
+    final phone = _userMobile;
+    if (phone != null && phone.isNotEmpty) {
+      await _supabaseService.deleteUserAccount(phone);
+    }
+    await logout();
+    return true;
+  }
+
   String _userName = "User Name";
   String get userName => _userName;
 

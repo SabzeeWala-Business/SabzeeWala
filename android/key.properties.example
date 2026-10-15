@@ -1,0 +1,9 @@
+# Keystore configuration for signing release Android App Bundle (.aab)
+# Generate keystore using:
+# keytool -genkey -v -keystore android/app/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+#
+# Copy this file to android/key.properties and replace the values:
+storePassword=YOUR_KEYSTORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=upload
+storeFile=upload-keystore.jks

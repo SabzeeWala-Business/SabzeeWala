@@ -364,6 +364,24 @@ class ProfileScreen extends StatelessWidget {
               onTap: () => _showHelpSupportDialog(context),
             ),
             _buildOptionTile(
+              icon: Icons.privacy_tip_outlined,
+              title: 'Privacy Policy',
+              iconColor: const Color(0xFF2E7D32),
+              iconBgColor: const Color(0xFFE8F5E9),
+              onTap: () async {
+                final uri = Uri.parse("https://sabzeeewala.netlify.app/privacy-policy");
+                try {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                } catch (_) {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Opening Privacy Policy...")),
+                    );
+                  }
+                }
+              },
+            ),
+            _buildOptionTile(
               icon: Icons.settings_outlined,
               title: 'Settings',
               iconColor: const Color(0xFF607D8B),
@@ -807,6 +825,8 @@ class ProfileScreen extends StatelessWidget {
     bool notifsEnabled = true;
     bool whatsappEnabled = true;
 
+    final appState = Provider.of<AppState>(context, listen: false);
+
     showDialog(
       context: context,
       builder: (context) {
@@ -815,41 +835,151 @@ class ProfileScreen extends StatelessWidget {
             return AlertDialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               title: const Text("Settings", style: TextStyle(fontWeight: FontWeight.bold)),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SwitchListTile(
-                    title: const Text("Push Notifications", style: TextStyle(fontSize: 14)),
-                    activeColor: AppColors.primary,
-                    value: notifsEnabled,
-                    onChanged: (val) {
-                      setState(() {
-                        notifsEnabled = val;
-                      });
-                    },
-                  ),
-                  const Divider(height: 1),
-                  SwitchListTile(
-                    title: const Text("WhatsApp Updates", style: TextStyle(fontSize: 14)),
-                    activeColor: AppColors.primary,
-                    value: whatsappEnabled,
-                    onChanged: (val) {
-                      setState(() {
-                        whatsappEnabled = val;
-                      });
-                    },
-                  ),
-                  const Divider(height: 1),
-                  const ListTile(
-                    title: Text("App Version", style: TextStyle(fontSize: 14)),
-                    trailing: Text("v1.1.8", style: TextStyle(color: AppColors.textLight)),
-                  ),
-                ],
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SwitchListTile(
+                      title: const Text("Push Notifications", style: TextStyle(fontSize: 14)),
+                      activeThumbColor: AppColors.primary,
+                      value: notifsEnabled,
+                      onChanged: (val) {
+                        setState(() {
+                          notifsEnabled = val;
+                        });
+                      },
+                    ),
+                    const Divider(height: 1),
+                    SwitchListTile(
+                      title: const Text("WhatsApp Updates", style: TextStyle(fontSize: 14)),
+                      activeThumbColor: AppColors.primary,
+                      value: whatsappEnabled,
+                      onChanged: (val) {
+                        setState(() {
+                          whatsappEnabled = val;
+                        });
+                      },
+                    ),
+                    const Divider(height: 1),
+                    ListTile(
+                      leading: const Icon(Icons.privacy_tip_outlined, color: AppColors.primary, size: 20),
+                      title: const Text("Privacy Policy", style: TextStyle(fontSize: 14)),
+                      trailing: const Icon(Icons.open_in_new, size: 16, color: Colors.grey),
+                      onTap: () async {
+                        final uri = Uri.parse("https://sabzeeewala.netlify.app/privacy-policy");
+                        try {
+                          await launchUrl(uri, mode: LaunchMode.externalApplication);
+                        } catch (_) {
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Opening Privacy Policy...")),
+                            );
+                          }
+                        }
+                      },
+                    ),
+                    const Divider(height: 1),
+                    ListTile(
+                      leading: const Icon(Icons.delete_forever_outlined, color: Colors.red, size: 20),
+                      title: const Text("Delete Account", style: TextStyle(fontSize: 14, color: Colors.red, fontWeight: FontWeight.w600)),
+                      subtitle: const Text("Permanently erase account & data", style: TextStyle(fontSize: 11, color: Colors.grey)),
+                      onTap: () {
+                        Navigator.pop(context);
+                        _showDeleteAccountDialog(context, appState);
+                      },
+                    ),
+                    const Divider(height: 1),
+                    const ListTile(
+                      title: Text("App Version", style: TextStyle(fontSize: 14)),
+                      trailing: Text("v1.0.0 (Build 1)", style: TextStyle(color: AppColors.textLight)),
+                    ),
+                  ],
+                ),
               ),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
                   child: const Text("Done", style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold)),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void _showDeleteAccountDialog(BuildContext context, AppState appState) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        bool isDeleting = false;
+        return StatefulBuilder(
+          builder: (dialogCtx, setDialogState) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              title: const Row(
+                children: [
+                  Icon(Icons.warning_amber_rounded, color: Colors.red, size: 26),
+                  SizedBox(width: 8),
+                  Text("Delete Account?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                ],
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Are you sure you want to permanently delete your account?",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                  ),
+                  const SizedBox(height: 12),
+                  const Text(
+                    "• Your profile, phone number, and name will be deleted.\n"
+                    "• All saved delivery addresses and cart data will be wiped.\n"
+                    "• Any remaining wallet balance or coins will be forfeited.\n"
+                    "• This action cannot be undone.",
+                    style: TextStyle(fontSize: 12.5, color: Colors.black87, height: 1.5),
+                  ),
+                  if (isDeleting) ...[
+                    const SizedBox(height: 16),
+                    const Center(
+                      child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.red),
+                    ),
+                  ],
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: isDeleting ? null : () => Navigator.pop(dialogCtx),
+                  child: const Text("Cancel", style: TextStyle(color: Colors.grey)),
+                ),
+                ElevatedButton(
+                  onPressed: isDeleting
+                      ? null
+                      : () async {
+                          setDialogState(() {
+                            isDeleting = true;
+                          });
+                          await appState.deleteAccount();
+                          if (ctx.mounted) {
+                            Navigator.pop(ctx);
+                            Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Your account and data have been successfully deleted."),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          }
+                        },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: const Text("Delete Permanently"),
                 ),
               ],
             );

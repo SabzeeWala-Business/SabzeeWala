@@ -1,3 +1,5 @@
+/privacy-policy /privacy-policy.html 200
+/delete-account  /delete-account.html  200
 /api/otp  /.netlify/functions/otp           200
 /msg91/*  https://control.msg91.com/:splat  200!
 /*        /index.html                       200
